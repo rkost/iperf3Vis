@@ -28,15 +28,14 @@ def get_data_frame_from_file(logData, filename):
         print("File \"", filename, "\" contains error: \"", iperf3_data["error"], "\". Skipping...")
         return
     else:
-        # Generate a pandas data frame for each interval
-        time = iperf3_data["start"]["timestamp"]["timesecs"]
-        ptime = pd.to_datetime(time, unit='s', utc=False)
+        # Generate a pandas data frame for each interval with a datetime as index
+        start_time = iperf3_data["start"]["timestamp"]["timesecs"]
         for interval in iperf3_data["intervals"]:
+            ptime = pd.to_datetime(start_time + interval["sum"]["start"], unit='s', utc=False)
             speed = interval["sum"]["bits_per_second"] / 1024 / 1024
 
-            data_frames.append(pd.DataFrame({"timepoint": [ptime],
-                                            "Upload Speed (MBit/s)": [speed]}))
+            data_frames.append(pd.DataFrame({"Upload Speed (MBit/s)": [speed]},
+                                            index=[ptime]))
 
     # Merge all frames into a big one containing all intervals of an iperf3 log.
-    # Note that all frames have the exact same timestamp for a single file!
     return pd.concat(data_frames)

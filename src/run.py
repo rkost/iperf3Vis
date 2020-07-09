@@ -25,4 +25,5 @@ def parse_arguments():
 if __name__ == "__main__":
     args = parse_arguments()
     data = logReader.get_data_from_directory(args.data_directory)
+    data.index = data.index.floor('H')
     visualizer.plot_series(data, args.output)
