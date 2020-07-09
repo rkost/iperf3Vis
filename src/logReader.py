@@ -29,11 +29,12 @@ def get_data_frame_from_file(logData, filename):
         return
     else:
         # Generate a pandas data frame for each interval
+        time = iperf3_data["start"]["timestamp"]["timesecs"]
+        ptime = pd.to_datetime(time, unit='s', utc=False)
         for interval in iperf3_data["intervals"]:
-            time = iperf3_data["start"]["timestamp"]["timesecs"]
             speed = interval["sum"]["bits_per_second"] / 1024 / 1024
 
-            data_frames.append(pd.DataFrame({"timepoint": [time],
+            data_frames.append(pd.DataFrame({"timepoint": [ptime],
                                             "Upload Speed (MBit/s)": [speed]}))
 
     # Merge all frames into a big one containing all intervals of an iperf3 log.
