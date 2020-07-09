@@ -17,7 +17,7 @@ def parse_arguments():
     parser.add_argument(
         "--output",
         help="The file to store the plot to",
-        default=os.path.dirname(__file__) + "plot.png")
+        default=os.path.dirname(__file__) + "/plot.png")
 
     return parser.parse_args()
 
