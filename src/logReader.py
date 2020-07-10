@@ -2,6 +2,8 @@ import json
 import os
 import pandas as pd
 
+from datetime import timezone
+
 
 def get_data_from_directory(path_to_logs):
     data_frames = []
