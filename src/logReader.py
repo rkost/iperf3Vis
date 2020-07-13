@@ -2,6 +2,8 @@ import json
 import os
 import pandas as pd
 
+from datetime import timezone
+
 
 def get_data_from_directory(path_to_logs):
     data_frames = []
@@ -28,14 +30,14 @@ def get_data_frame_from_file(logData, filename):
         print("File \"", filename, "\" contains error: \"", iperf3_data["error"], "\". Skipping...")
         return
     else:
-        # Generate a pandas data frame for each interval
+        # Generate a pandas data frame for each interval with a datetime as index
+        start_time = iperf3_data["start"]["timestamp"]["timesecs"]
         for interval in iperf3_data["intervals"]:
-            time = iperf3_data["start"]["timestamp"]["timesecs"]
+            ptime = pd.to_datetime(start_time + interval["sum"]["start"], unit='s', utc=False)
             speed = interval["sum"]["bits_per_second"] / 1024 / 1024
 
-            data_frames.append(pd.DataFrame({"timepoint": [time],
-                                            "Upload Speed (MBit/s)": [speed]}))
+            data_frames.append(pd.DataFrame({"Upload Speed (MBit/s)": [speed]},
+                                            index=[ptime]))
 
     # Merge all frames into a big one containing all intervals of an iperf3 log.
-    # Note that all frames have the exact same timestamp for a single file!
     return pd.concat(data_frames)
