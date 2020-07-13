@@ -7,7 +7,7 @@ import altair as alt
 def plot_ribbon_plot(data, interval_string, output_file):
     data.index = data.index.floor(interval_string)
 
-    # Generate
+    # Generate data for mean and error bands
     interval_data = pd.concat([
         data.groupby(data.index).quantile(0.05).rename(columns={"Upload Speed (MBit/s)": "q5"}),
         data.groupby(data.index).quantile(0.10).rename(columns={"Upload Speed (MBit/s)": "q10"}),
@@ -20,6 +20,7 @@ def plot_ribbon_plot(data, interval_string, output_file):
 
     # Disclaimer: This was written by @rkost while he did not know anything about altair.
     # It basically is a giant hack (I guess). Suggestions welcome!
+    # Plot: Mean, confidence (50, 80, 90) and scattered raw data
     alt.data_transformers.disable_max_rows()
     line = alt.Chart(interval_data.reset_index()).mark_line().encode(
         x=alt.X('index', axis=alt.Axis(title='Time (CEST)')),
@@ -45,6 +46,7 @@ def plot_ribbon_plot(data, interval_string, output_file):
         y='Upload Speed (MBit/s)'
     )
 
+    # Combine plots, save, display
     plot = (line + area50 + area80 + area90 + scatter)
     plot.save(output_file, scale_factor=2.0)
     plot.show()
