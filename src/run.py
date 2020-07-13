@@ -19,11 +19,20 @@ def parse_arguments():
         help="The file to store the plot to",
         default=os.path.dirname(__file__) + "/plot.png")
 
+    parser.add_argument(
+        "--box-plot",
+        help="Plots data as box plot(s) instead of a ribbon plot",
+        action="store_const",
+        const=True
+    )
+
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_arguments()
     data = logReader.get_data_from_directory(args.data_directory)
-    data.index = data.index.floor('H')
-    visualizer.plot_series(data, args.output)
+    if args.box_plot:
+        visualizer.plot_box_plot(data, "H", args.output)
+    else:
+        visualizer.plot_ribbon_plot(data, "H", args.output)
