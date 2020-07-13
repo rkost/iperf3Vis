@@ -2,3 +2,5 @@ matplotlib
 seaborn
 pandas
 altair
+altair_saver
+altair_viewer
