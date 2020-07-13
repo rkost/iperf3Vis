@@ -138,5 +138,8 @@ dmypy.json
 cython_debug/
 
 # IDE
-
 .idea
+
+# Output files
+*.png
+*.svg
