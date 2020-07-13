@@ -1,8 +1,8 @@
 import argparse
 import os
 
-import src.logReader as logReader
-import src.visualizer as visualizer
+import logReader
+import visualizer
 
 
 def parse_arguments():
