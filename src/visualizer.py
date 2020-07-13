@@ -1,6 +1,5 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 import pandas as pd
 import altair as alt
 
