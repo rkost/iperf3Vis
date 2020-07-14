@@ -36,7 +36,13 @@ Run `run.py` with arguments:
 - `--time-interval pandas_timeseries-offset-alias` (optional, default `H`)
 - `--box-plot` (optional)
 
-Note that this tool will skip all json files that contain the "error" key.
+To generate the example ribbon plot: 
+
+```
+python src/run.py --data-directory /path/to/speedtests --output ~/visualization.png --time-interval 1h
+```
+
+**Note** that this tool will skip all json files that contain the "error" key.
 
 
 ## Contributing
