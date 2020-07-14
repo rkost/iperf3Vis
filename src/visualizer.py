@@ -23,7 +23,7 @@ def plot_ribbon_plot(data, interval_string, output_file):
     # Plot: Mean, confidence (50, 80, 90) and scattered raw data
     alt.data_transformers.disable_max_rows()
     line = alt.Chart(interval_data.reset_index()).mark_line().encode(
-        x=alt.X('index', axis=alt.Axis(title='Time (CEST)')),
+        x=alt.X('index', axis=alt.Axis(title='Time (UTC)')),
         y=alt.Y('q50:Q', axis=alt.Axis(title='MBit/s: Mean'))
     ).properties(width=1000, height=500)
     area50 = alt.Chart(interval_data.reset_index()).mark_area(opacity=0.2).encode(
