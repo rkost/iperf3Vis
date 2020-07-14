@@ -33,6 +33,7 @@ Run `run.py` with arguments:
 
 - `--data-directory /path/to/data/`
 - `--output /path/to/output/plot.png` (optional)
+- `--time-interval pandas_timeseries-offset-alias` (optional, default `H`)
 - `--box-plot` (optional)
 
 Note that this tool will skip all json files that contain the "error" key.
