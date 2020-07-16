@@ -9,7 +9,7 @@ def plot_ribbon_plot(data, interval_string, output_file):
 
     # Generate data for mean and error bands
     interval_data = pd.concat([
-        data.groupby(data.index).quantile(0.05).rename(columns={"Upload Speed (MBit/s)": "q5"}),
+        data.groupby(data.index).quantile(0.05).rename(columns={"Upload Speed (MBit/s)": "q05"}),
         data.groupby(data.index).quantile(0.10).rename(columns={"Upload Speed (MBit/s)": "q10"}),
         data.groupby(data.index).quantile(0.25).rename(columns={"Upload Speed (MBit/s)": "q25"}),
         data.groupby(data.index).quantile(0.50).rename(columns={"Upload Speed (MBit/s)": "q50"}),
