@@ -6,7 +6,7 @@ This is a basic tool for visualizing one or more [iperf3](https://iperf.fr/) log
 
 A ribbon plot (line with error bands and scattered raw data) for an iperf3 log folder containing a week of logs (60 second log every 10 Minutes over a period of roughly a week).
 
-![ribbonPlot1](https://rkost.org/iperf3Vis/examples/ribbonPlot.png)
+![ribbonPlot1](https://rkost.org/iperf3Vis/examples/ribbonPlot.jpg)
 
 ## Example (--box-plot)
 
