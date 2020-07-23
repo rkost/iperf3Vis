@@ -12,7 +12,7 @@ TARGET_IP=10.10.0.10
 cd /home/rkost/repos/iperf3Vis
 source .venv/bin/activate
 
-python src/run.py --data-directory ${DATA_SOURCE} --output ${FTP} --time-interval 1h
+python src/run.py --data-directory ${DATA_SOURCE} --output ${FTP} --time-interval 1h --img-width=5000 --img-height=1000
 
 rsync -e "ssh -p 5101" -a ${FTP} ${TARGET_USER}@${TARGET_IP}:${TARGET_FILE}
 
