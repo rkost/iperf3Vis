@@ -25,7 +25,7 @@ def plot_ribbon_plot(data, interval_string, output_file, width, height, display)
     line = alt.Chart(interval_data.reset_index()).mark_line().encode(
         x=alt.X('index', axis=alt.Axis(title='Time (UTC)')),
         y=alt.Y('q50:Q', axis=alt.Axis(title='MBit/s: Mean'))
-    ).properties(width=width, height=height)
+    ).properties(width=width/2, height=height/2)
     area50 = alt.Chart(interval_data.reset_index()).mark_area(opacity=0.2).encode(
         x='index',
         y=alt.Y('q75:Q', axis=alt.Axis(title='confidence 50')),
@@ -48,7 +48,7 @@ def plot_ribbon_plot(data, interval_string, output_file, width, height, display)
 
     # Combine plots, save, display
     plot = (line + area50 + area80 + area90 + scatter)
-    plot.save(output_file)
+    plot.save(output_file, scale_factor=2.0)
     if display:
         plot.show()
 
