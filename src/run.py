@@ -40,6 +40,13 @@ def parse_arguments():
     )
 
     parser.add_argument(
+        "--display",
+        help="Displays the resulting plot in the default browser in addition to saving it as png",
+        action="store_const",
+        const=True
+    )
+
+    parser.add_argument(
         "--box-plot",
         help="Plots data as box plot(s) instead of a ribbon plot",
         action="store_const",
@@ -55,4 +62,4 @@ if __name__ == "__main__":
     if args.box_plot:
         visualizer.plot_box_plot(data, args.time_interval, args.output, args.img_width, args.img_height)
     else:
-        visualizer.plot_ribbon_plot(data, args.time_interval, args.output, args.img_width, args.img_height)
+        visualizer.plot_ribbon_plot(data, args.time_interval, args.output, args.img_width, args.img_height, args.display)
