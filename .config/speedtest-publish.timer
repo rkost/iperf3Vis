@@ -1,0 +1,10 @@
+[Unit]
+Description=Speedtest-publish timer
+
+[Timer]
+OnBootSec=0min
+OnCalendar=*:0/30
+
+[Install]
+WantedBy=timers.target  
+

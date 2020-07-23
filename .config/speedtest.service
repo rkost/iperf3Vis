@@ -1,0 +1,14 @@
+[Unit]
+Description=Do a speedtest and log to file
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/rkost/speedtests
+ExecStart=/home/rkost/speedtests/oneshot-log.sh
+Restart=on-failure
+User=rkost
+Group=users
+
+[Install]
+WantedBy=multi-user.target
+

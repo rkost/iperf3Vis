@@ -1,0 +1,13 @@
+[Unit]
+Description=Publish the plot and raw data of the speedtest series
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/rkost/speedtests
+ExecStart=/home/rkost/speedtests/publish.sh
+User=rkost
+Group=users
+
+[Install]
+WantedBy=multi-user.target
+
