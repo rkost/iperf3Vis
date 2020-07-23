@@ -26,6 +26,20 @@ def parse_arguments():
     )
 
     parser.add_argument(
+        "--img-width",
+        type=int,
+        help="The width of the image to output. (Default: 1500)",
+        default=1500
+    )
+
+    parser.add_argument(
+        "--img-height",
+        type=int,
+        help="The height of the image to output. (Default: 500)",
+        default=500
+    )
+
+    parser.add_argument(
         "--box-plot",
         help="Plots data as box plot(s) instead of a ribbon plot",
         action="store_const",
@@ -39,6 +53,6 @@ if __name__ == "__main__":
     args = parse_arguments()
     data = logReader.get_data_from_directory(args.data_directory)
     if args.box_plot:
-        visualizer.plot_box_plot(data, args.time_interval, args.output)
+        visualizer.plot_box_plot(data, args.time_interval, args.output, args.img_width, args.img_height)
     else:
-        visualizer.plot_ribbon_plot(data, args.time_interval, args.output)
+        visualizer.plot_ribbon_plot(data, args.time_interval, args.output, args.img_width, args.img_height)

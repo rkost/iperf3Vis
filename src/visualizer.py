@@ -4,7 +4,7 @@ import pandas as pd
 import altair as alt
 
 
-def plot_ribbon_plot(data, interval_string, output_file):
+def plot_ribbon_plot(data, interval_string, output_file, width, height):
     data.index = data.index.floor(interval_string)
 
     # Generate data for mean and error bands
@@ -25,7 +25,7 @@ def plot_ribbon_plot(data, interval_string, output_file):
     line = alt.Chart(interval_data.reset_index()).mark_line().encode(
         x=alt.X('index', axis=alt.Axis(title='Time (UTC)')),
         y=alt.Y('q50:Q', axis=alt.Axis(title='MBit/s: Mean'))
-    ).properties(width=1000, height=500)
+    ).properties(width=width, height=height)
     area50 = alt.Chart(interval_data.reset_index()).mark_area(opacity=0.2).encode(
         x='index',
         y=alt.Y('q75:Q', axis=alt.Axis(title='confidence 50')),
@@ -48,11 +48,11 @@ def plot_ribbon_plot(data, interval_string, output_file):
 
     # Combine plots, save, display
     plot = (line + area50 + area80 + area90 + scatter)
-    plot.save(output_file, scale_factor=2.0)
+    plot.save(output_file)
     plot.show()
 
 
-def plot_box_plot(data, interval_string, output_file):
+def plot_box_plot(data, interval_string, output_file, width, height):
     data.index = data.index.floor(interval_string)
     fig = plt.figure(figsize=(24, 9))
     sns.set(style="ticks")
