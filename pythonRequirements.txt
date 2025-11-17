@@ -4,3 +4,4 @@ pandas
 altair
 altair_saver
 altair_viewer
+vl-convert-python
