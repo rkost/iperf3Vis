@@ -57,5 +57,5 @@ def plot_box_plot(data, interval_string, output_file, width, height):
     data.index = data.index.floor(interval_string)
     fig = plt.figure(figsize=(24, 9))
     sns.set(style="ticks")
-    sns.boxplot(data.index, data["Upload Speed (MBit/s)"])
+    sns.boxplot(x=data["Upload Speed (MBit/s)"])
     plt.savefig(output_file)
